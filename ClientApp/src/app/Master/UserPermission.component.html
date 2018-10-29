@@ -1,0 +1,61 @@
+<section class="grid_12">
+  <div class="block-border">
+    <form class="block-content form"  [formGroup]="UserPermission" #formDir="ngForm" id="UserPermission" method="post" action="#">
+      <h1>User Permission</h1>
+
+      <ul class="message {{ MessageType}}" style="position:fixed; bottom:10px; left:10px; display:none;">
+        <li><strong>{{ Message }}</strong>&nbsp; &nbsp; &nbsp;</li>
+        <li class="close-bt"></li>
+      </ul>
+
+      <div class="columns">
+        <div id="tab-locales">
+          <div id="tab-en">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+
+              <div class="col-md-3 col-sm-6 col-xs-12 col-lg-3">
+                <label for="complex-title">User Code</label>
+                <select formControlName="UserId" class="full-width" (change)="UserChange($event.target.value)">
+                  <option value="0"><:--Select User--:></option>
+                  <option *ngFor="let U of UserList" value="{{U.UserId}}">{{U.UserName}} - {{U.UserCode}}</option>
+                </select>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <table class="table" id="tablee" style="border: black;border-style:solid; border-width:thin; width:100%">
+        <thead>
+          <tr>
+            <th scope="col" style="text-align:center">Sr. No.</th>
+            <th scope="col">Menu Name</th>
+            <th>Save</th>
+            <th>Update</th>
+            <th>Delete</th>
+            <th>View</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let M of MenuList; let i= index;">
+
+            <td style="text-align:center">{{i+1}}</td>
+            <td>{{M.MenuName}}</td>
+            <td><input type="checkbox" (change)="SaveFlag(M.MenuId)" [checked]="1==M.Save" /></td>
+            <td><input type="checkbox" (change)="UpdateFlag(M.MenuId)" [checked]="1==M.Update" /></td>
+            <td><input type="checkbox" (change)="DeleteFlag(M.MenuId)" [checked]="1==M.Delete" /></td>
+            <td><input type="checkbox" (change)="ViewFlag(M.MenuId)" [checked]="1==M.View" /></td>
+           
+
+          </tr>
+        </tbody>
+      </table>
+
+    </form>
+  </div>
+</section>
+
+
+<div class="clear"></div>

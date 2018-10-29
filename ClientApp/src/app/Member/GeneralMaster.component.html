@@ -1,0 +1,59 @@
+<div class="grid_3">
+
+  <section class="with-margin">
+    <div class="block-border">
+      <form class="block-content form" id="simple-list-form" method="post" action="#">
+        <h1>General Master list</h1>
+
+        <p class="input-type-text">
+          <input type="text" name="simple-search" id="simple-search" value="" style="width:90%" title="Filter results">
+          <img src="assets/images/icons/fugue/magnifier.png" width="16" height="16" class="float-right">
+        </p>
+
+        <ul class="simple-list with-icon">
+          <li><a (click)="ShowState()">State</a></li>
+          <li><a (click)="ShowCity()">City</a></li>
+          <li><a (click)="ShowBranch()">Branch</a></li>
+          <li><a (click)="ShowSegment()">Segment</a></li>
+          <li><a (click)="ShowPlotType()">Plot Type</a></li>
+          <li><a (click)="ShowBank()">Bank</a></li>
+          <li><a (click)="ShowVisitorPurpose()">Visitor Purpose</a></li>
+          <li><a (click)="ShowProject()">Project</a></li>
+          <li><a (click)="ShowSector()">Sector</a></li>
+          <li><a (click)="ShowBlock()">Block</a></li>
+          <li><a (click)="ShowRate()">Rate</a></li>
+          <li><a (click)="ShowPlotDetail()">Plot Detail</a></li>
+          <li><a (click)="ShowDepartment()">Department</a></li>
+          <li><a (click)="ShowDesignation()">Designation</a></li>
+          <li><a (click)="ShowCity()">Remunarration Structure</a></li>
+          <li><a (click)="ShowAccountGroup()">Account Group</a></li>
+          <li><a (click)="ShowAccountLedger()">Account Ledger</a></li>
+        </ul>
+      </form>
+    </div>
+  </section>
+</div>
+
+
+<section class="grid_9">
+  <div class="childrout">
+    <State *ngIf="isState"></State>
+    <City *ngIf="isCity"></City>
+    <Branch *ngIf="isBranch"></Branch>
+    <Segment *ngIf="isSegment"></Segment>
+    <PlotType *ngIf="isPlotType"></PlotType>
+    <Bank *ngIf="isBank"></Bank>
+    <VisitorPurpose *ngIf="isVisitorPurpose"></VisitorPurpose>
+    <Department *ngIf="isDepartment"></Department>
+    <Designation *ngIf="isDesignation"></Designation>
+    <Project *ngIf="isProject"></Project>
+    <Sector *ngIf="isSector"></Sector>
+    <Block *ngIf="isBlock"></Block>
+    <RateMaster *ngIf="isRate"></RateMaster>
+    <AccountGroup *ngIf="isAccountGroup"></AccountGroup>
+    <AccountLedger *ngIf="isAccountLedger"></AccountLedger>
+    <PlotDetail *ngIf="isPlotDetail"></PlotDetail>
+  </div>
+</section>
+
+<div class="clear"></div>

@@ -1,0 +1,37 @@
+<section class="grid_12">
+  <div class="block-border">
+    <form class="block-content form"  [formGroup]="GraphicView" #formDir="ngForm" id="GraphicView" method="post" action="#">
+      <h1>Graphic View Block</h1>
+
+      <ul class="message {{ MessageType}}" style="position:fixed; bottom:10px; left:10px; display:none;">
+        <li><strong>{{ Message }}</strong>&nbsp; &nbsp; &nbsp;</li>
+        <li class="close-bt"></li>
+      </ul>
+
+      <div class="columns">
+
+        <div id="tab-locales">
+          <div id="tab-en">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+
+              <div *ngFor="let B of BlockList" class="col-md-3 col-sm-3 col-xs-12 col-lg-3 p5">
+
+                <div class="{{BgColor}}">
+                  <p>{{B.BlockName}}</p>
+                </div>
+                
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+    </form>
+  </div>
+</section>
+
+
+<div class="clear"></div>

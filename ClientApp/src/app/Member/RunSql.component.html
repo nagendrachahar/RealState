@@ -1,0 +1,51 @@
+<section class="grid_12">
+    <div class="block-border" style="position: relative;">
+        <form class="block-content form" [formGroup]="RunSqlform" #formDir="ngForm" (ngSubmit)="save()" id="RunSqlform" method="post" action="#">
+
+            <h1>Run Sql</h1>
+            <div style="display:none">
+                <input type="text" formControlName="RunSqlId">
+            </div>
+
+            <ul class="message {{ MessageType}}" style="position:fixed; bottom:10px; display:none;">
+                <li><strong>{{ Message }}</strong>&nbsp; &nbsp; &nbsp;</li>
+                <li class="close-bt"></li>
+            </ul>
+
+            <div class="columns">
+                <div id="tab-locales">
+                    <div id="tab-en">
+                        <fieldset>
+                            <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
+                                <textarea rows="4" placeholder="Write Query Here" formControlName="txtQuery"    style="width:100%" required></textarea>
+                            </div>
+                            <span class="relative Search_input">
+                                <a (click)="Execute()" class="search_btn">Execute</a>
+                            </span>
+                        </fieldset>
+                            <fieldset>
+                                <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12"  style="overflow:auto;">
+                                    <table *ngIf="isDisplay" class="table" cellspacing="0" style="width:100%">
+                                        <thead>
+                                            <tr>
+                                                <th *ngFor="let objArrayElement of generateKey(RunSqlList[0])">{{objArrayElement}}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let L of RunSqlList; let i = index">
+                                                <td *ngFor="let objArrayElement of generateArray(L)">{{objArrayElement}}</td>
+                                            </tr>
+                                            <!--<tr *ngIf="!generateArray(L) || generateArray(L).length==0">
+                                                <td>No Record Found</td>
+                                            </tr>-->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+            </div>
+        </form>
+    </div>
+</section>
+<div class="clear"></div>

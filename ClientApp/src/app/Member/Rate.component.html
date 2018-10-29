@@ -1,0 +1,66 @@
+<section class="grid_12">
+  <div class="block-border" style="position: relative;">
+    <form class="block-content form pt5" [formGroup]="Rateform" #formDir="ngForm" (ngSubmit)="save()" id="Rateform" method="post" action="#">
+
+      <h1>Rate</h1>
+
+      <ul class="message {{ MessageType}}" style="position:fixed; bottom:10px; left:10px; display:none;">
+        <li><strong>{{ Message }}</strong>&nbsp; &nbsp; &nbsp;</li>
+        <li class="close-bt"></li>
+      </ul>
+
+      <div class="columns">
+        <div id="tab-locales">
+          <div id="tab-en">
+            <fieldset>
+
+              <div>
+                <table class="table" id="tablee" style="border: black;border-style:solid; border-width:thin; width:100%">
+                  <thead>
+                    <tr>
+                      <th scope="col" style="text-align:center">Sr. No.</th>
+                      <th scope="col">Rate</th>
+                      <th scope="col">WEF</th>
+                      <th scope="col" style="width: 50px; text-align:center">Action</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <tr>
+                      <td scope="col" style="text-align:center"><img src="assets/images/icons/fugue/arrow-circle.png" width="16" height="16" (click)="$event.stopPropagation();FillForm(0)"></td>
+
+                      <td scope="col"><input type="text" formControlName="Price" class="full-width" /></td>
+                      <td scope="col"><input type="date" formControlName="WEF" class="full-width" /></td>
+                      <td scope="col" style="text-align:center">
+                        <button type="submit" class="form_button" style="color:white;text-align:center"> {{SaveBtn}}</button>
+                      </td>
+                    </tr>
+
+                    <tr *ngFor="let R of RateList; let i=index;">
+
+                      <td style="text-align:center">{{i+1}}</td>
+                      <td>{{R.Price}}</td>
+                      <td>{{R.WEFDate}}</td>
+                      <td class="table-actions" style="text-align:center">
+                        <a (click)="$event.stopPropagation();FillForm(R.RateId)" title="Edit" class="with-tip" style="cursor: pointer;"><img src="assets/images/icons/fugue/magnifier.png" width="16" height="16"></a>
+                        <a (click)="$event.stopPropagation();Delete(R.RateId)" title="Delete" class="with-tip" style="cursor: pointer;"><img src="assets/images/icons/fugue/cross-circle.png" width="16" height="16"></a>
+                      </td>
+
+                    </tr>
+                  </tbody>
+                </table>
+
+
+              </div>
+
+            </fieldset>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+
+<div class="clear"></div>
+
+

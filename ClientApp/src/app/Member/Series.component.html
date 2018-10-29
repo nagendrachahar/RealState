@@ -1,0 +1,101 @@
+<section class="grid_12">
+  <div class="block-border" style="position: relative;">
+    <form class="block-content form" [formGroup]="Seriesform" #formDir="ngForm" (ngSubmit)="save()" id="Seriesform" method="post" action="#">
+
+      <h1>Series</h1>
+      <div style="display:none">
+        <input type="text" formControlName="SeriesId">
+      </div>
+
+      <ul class="message {{ MessageType}}" style="position:fixed; bottom:10px; left:10px; display:none;">
+        <li><strong>{{ Message }}</strong>&nbsp; &nbsp; &nbsp;</li>
+        <li class="close-bt"></li>
+      </ul>
+
+      <div class="columns">
+        <div id="tab-locales">
+          <div id="tab-en">
+            <fieldset>
+
+              <div>
+                <table class="table" style="border: black;border-style:solid; border-width:thin; width:100%">
+                  <thead>
+                    <tr>
+                      <th scope="col" style="text-align:center">#</th>
+                      <th scope="col">Series Name</th>
+                      <th scope="col">Table</th>
+                      <th scope="col">Column</th>
+                      <th scope="col">Prefix</th>
+                      <th scope="col">No Of Digit</th>
+                      <th scope="col">Combination</th>
+                      <th scope="col">Combination</th>
+                      <th scope="col">Combination</th>
+                      <th scope="col" style="width: 50px; text-align:center">Action</th>
+                    </tr>
+
+                  </thead>
+
+                  <tbody>
+                    <tr>
+                      <td scope="col" style="text-align:center"><img src="assets/images/icons/fugue/arrow-circle.png" width="16" height="16" (click)="$event.stopPropagation();FillForm(0)"></td>
+                      <td scope="col"><input type="text" formControlName="SeriesName" class="full-width" /></td>
+                      <td scope="col"><input type="text" formControlName="TableName" class="full-width" /></td>
+                      <td scope="col"><input type="text" formControlName="ColumnName" class="full-width" /></td>
+                      <td scope="col"><input type="text" formControlName="Prefix" class="full-width" /></td>
+                      <td scope="col"><input type="text" formControlName="NoOfDigit" class="full-width" /></td>
+
+                      <td scope="col">
+                        <select name="complex-en-style" formControlName="Combination1" class="full-width">
+                          <option value="0">--Select--</option>
+                          <option *ngFor="let G of CombinationList " value="{{G.seriesCombinationId}}">{{G.seriesCombinationName}}</option>
+                        </select>
+                      </td>
+                      <td scope="col">
+                        <select name="complex-en-style" formControlName="Combination2" class="full-width">
+                          <option value="0">--Select--</option>
+                          <option *ngFor="let G of CombinationList " value="{{G.seriesCombinationId}}">{{G.seriesCombinationName}}</option>
+                        </select>
+                      </td>
+                      <td scope="col">
+                        <select name="complex-en-style" formControlName="Combination3" class="full-width">
+                          <option value="0">--Select--</option>
+                          <option *ngFor="let G of CombinationList " value="{{G.seriesCombinationId}}">{{G.seriesCombinationName}}</option>
+                        </select>
+                      </td>
+                      <td scope="col" style="text-align:center">
+                        <button type="submit" class="form_button" style="color:white;text-align:center"> {{SaveBtn}}</button>
+                      </td>
+                    </tr>
+
+                    <tr *ngFor="let L of SeriesList; let i= index;">
+
+                      <td style="text-align:center">{{i+1}}</td>
+                      <td>{{L.SeriesName}}</td>
+                      <td>{{L.TableName}}</td>
+                      <td>{{L.ColumnName}}</td>
+                      <td>{{L.Prefix}}</td>
+                      <td>{{L.NoOfDigit}}</td>
+                      <td>{{L.Combination1Name}}</td>
+                      <td>{{L.Combination2Name}}</td>
+                      <td>{{L.Combination3Name}}</td>
+                      <td class="table-actions" style="text-align:center">
+                        <a (click)="$event.stopPropagation();FillForm(L.SeriesId)" title="Edit" class="with-tip" style="cursor: pointer;"><img src="assets/images/icons/fugue/magnifier.png" width="16" height="16"></a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+
+              </div>
+
+            </fieldset>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+
+<div class="clear"></div>
+
+

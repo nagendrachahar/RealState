@@ -1,0 +1,213 @@
+<section class="grid_12">
+  <div class="block-border" style="position: relative;">
+    <form class="block-content form" [formGroup]="Employeeform" #formDir="ngForm" (ngSubmit)="save()" id="Employeeform" method="post" action="#">
+
+      <h1>Manage Employee</h1>
+
+      <span class="relative Search_input">
+        <input type="text" formControlName="SearchCode" class="full-width">
+        <a class="search_btn" (click)="Search()">Search</a>
+      </span>
+
+      <ul class="message {{ MessageType}}" style="position:fixed; bottom:10px; left:10px; display:none;">
+        <li><strong>{{ Message }}</strong>&nbsp; &nbsp; &nbsp;</li>
+        <li class="close-bt"></li>
+      </ul>
+
+      <div class="columns">
+        <div id="tab-locales">
+          <div id="tab-en">
+
+            <div class="col-md-1 col-sm-12 col-xs-12 col-lg-1" style="padding-left: 0px; padding-right: 0px;">
+              <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
+
+                <div class="profile_img">
+                  <label for="ProfilePic"><img id="ProfileImg" (error)="ChangePic($event)" src="assets/Upload/Employee/{{ProfilePic}}.jpg" style="width: 100px; height: 110px;"></label>
+                </div>
+
+                <div class="profile_img" style="display:none;">
+                  <input #file id="ProfilePic" type="file" style="width: 100px;" (change)="onFileChange($event)" />
+                </div>
+
+              </div>
+            </div>
+
+            <div class="col-md-11 col-sm-12 col-xs-12 col-lg-11" style="padding-left:40px">
+
+              <div class="col-md-3 col-sm-6 col-xs-12 col-lg-3 required">
+                <label for="complex-title">Employee Code</label>
+                <input type="text" class="full-width" formControlName="EmployeeCode">
+              </div>
+
+              <div class="col-md-3 col-sm-6 col-xs-12 col-lg-3 required">
+                <label for="complex-title">Employee Name</label>
+                <input type="text" class="full-width" formControlName="EmployeeName">
+              </div>
+
+              <div class="col-md-3 col-sm-6 col-xs-12 col-lg-3 required">
+                <label for="complex-title">Father/Husband Name</label>
+                <input type="text" class="full-width" formControlName="FatherHusbandName">
+              </div>
+
+              <div class="col-md-3 col-sm-6 col-xs-12 col-lg-3 required">
+                <label for="complex-title">Mother Name</label>
+                <input type="text" class="full-width" formControlName="MotherName">
+              </div>
+
+              <div class="col-md-3 col-sm-6 col-xs-12 col-lg-3 required">
+                <label for="complex-title">DOJ</label>
+                <input type="date" class="full-width" formControlName="DOJ">
+              </div>
+
+              <div class="col-md-3 col-sm-6 col-xs-12 col-lg-3">
+                <label for="complex-title">Branch</label>
+                <select formControlName="BranchId" class="full-width">
+                  <option value="0"><:--Select Branch--:></option>
+                  <option *ngFor="let B of BranchList" value="{{B.branchID}}">{{B.branchName}}</option>
+                </select>
+              </div>
+
+              <div class="col-md-3 col-sm-6 col-xs-12 col-lg-3">
+                <label for="complex-title">Department</label>
+                <select formControlName="DepartmentId" class="full-width">
+                  <option value="0"><:--Select Department--:></option>
+                  <option *ngFor="let D of DepartmentList " value="{{D.DepartmentId}}">{{D.DepartmentName}}</option>
+                </select>
+              </div>
+
+              <div class="col-md-3 col-sm-6 col-xs-12 col-lg-3">
+                <label for="complex-title">Designation</label>
+                <select name="complex-en-style" formControlName="DesignationId" class="full-width">
+                  <option value="0"><:--Select Designation--:></option>
+                  <option *ngFor="let D of DesignationList " value="{{D.DesignationId}}">{{D.DesignationName}}</option>
+                </select>
+              </div>
+
+              <div class="col-md-3 col-sm-6 col-xs-12 col-lg-3 required">
+                <label for="complex-title">Work Location</label>
+                <input type="text" class="full-width" formControlName="WorkLocation" required>
+              </div>
+
+              <div class="col-md-3 col-sm-6 col-xs-12 col-lg-3">
+                <label for="complex-title" style="float:left;">Reporting Person</label>
+                <label style="float:right;">{{ReportingName}}</label>
+                <input type="text" class="full-width" formControlName="ReportingPersonCode" (change)="getReportingPerson($event.target.value)">
+              </div>
+
+              <div class="col-md-3 col-sm-6 col-xs-12 col-lg-3">
+                <label for="complex-title">Date of Birth</label>
+                <input type="date" class="full-width" formControlName="DOB">
+              </div>
+
+              <div class="col-md-3 col-sm-6 col-xs-12 col-lg-3">
+                <label for="complex-title">Contact No.</label>
+                <input type="number" class="full-width" formControlName="ContactNo" maxlength="10">
+              </div>
+
+              <div class="col-md-3 col-sm-6 col-xs-12 col-lg-3">
+                <label for="complex-title">Email ID</label>
+                <input type="email" class="full-width" formControlName="EmailId">
+              </div>
+
+              <div class="col-md-3 col-sm-6 col-xs-12 col-lg-3">
+                <label for="complex-title">Marital Status</label>
+                <select name="complex-en-style" class="full-width" formControlName="MaritalStatus">
+                  <option value="0"><:--Select--:></option>
+                  <option value="1">married</option>
+                  <option value="2">Unmarried</option>
+                </select>
+              </div>
+
+              <div class="col-md-3 col-sm-6 col-xs-12 col-lg-3">
+                <label for="complex-title">Qualification</label>
+                <input type="text" class="full-width" formControlName="Qualification" maxlength="10">
+              </div>
+
+              <div class="col-md-3 col-sm-6 col-xs-12 col-lg-3">
+                <label for="complex-title">Address</label>
+                <input type="text" class="full-width" formControlName="Address">
+              </div>
+
+              <div class="col-md-3 col-sm-6 col-xs-12 col-lg-3">
+                <label for="complex-title">State</label>
+                <select name="complex-en-style" formControlName="StateId" class="full-width" (change)="StateChange($event.target.value)">
+                  <option value="0"><:--Select State--:></option>
+                  <option *ngFor="let S of StateList " value="{{S.stateId}}">{{S.stateName}}</option>
+                </select>
+              </div>
+
+              <div class="col-md-3 col-sm-6 col-xs-12 col-lg-3">
+                <label for="complex-title">City</label>
+                <select formControlName="CityId" class="full-width">
+                  <option value="0"><:--Select City--:></option>
+                  <option *ngFor="let C of CityList " value="{{C.cityId}}">{{C.cityName}}</option>
+                </select>
+              </div>
+
+              <div class="col-md-3 col-sm-6 col-xs-12 col-lg-3">
+                <label for="complex-title">Pin Code</label>
+                <input type="text" class="full-width" maxlength="6" formControlName="Pincode">
+              </div>
+
+              <h4 style="display:block; clear:both; padding-top:15px;">Emergency Person</h4>
+
+              <div class="col-md-4 col-sm-6 col-xs-12 col-lg-4">
+                <label for="complex-title">PersonName1</label>
+                <input type="text" class="full-width" formControlName="PersonName1">
+              </div>
+
+              <div class="col-md-4 col-sm-6 col-xs-12 col-lg-4">
+                <label for="complex-title">ContactNo1</label>
+                <input type="text" class="full-width" maxlength="6" formControlName="ContactNo1">
+              </div>
+
+              <div class="col-md-4 col-sm-6 col-xs-12 col-lg-4">
+                <label for="complex-title">Relation1</label>
+                <select name="complex-en-style" formControlName="RelationId1" class="full-width">
+                  <option value="0"><:--Select Relation--:></option>
+                  <option *ngFor="let R of RelationList " value="{{R.relationId}}">{{R.relationName}}</option>
+                </select>
+              </div>
+
+              <br style="clear:both;" />
+
+              <div class="col-md-4 col-sm-6 col-xs-12 col-lg-4">
+                <label for="complex-title">PersonName2</label>
+                <input type="text" class="full-width" formControlName="PersonName2">
+              </div>
+
+              <div class="col-md-4 col-sm-6 col-xs-12 col-lg-4">
+                <label for="complex-title">ContactNo2</label>
+                <input type="text" class="full-width" formControlName="ContactNo2">
+              </div>
+
+              <div class="col-md-4 col-sm-6 col-xs-12 col-lg-4">
+                <label for="complex-title">Relation2</label>
+                <select name="complex-en-style" formControlName="RelationId2" class="full-width">
+                  <option value="0"><:--Select Relation--:></option>
+                  <option *ngFor="let R of RelationList " value="{{R.relationId}}">{{R.relationName}}</option>
+                </select>
+              </div>
+
+              <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
+                <div class="align-center" style="margin-top:20px;">
+                  <button type="submit" class="form_button" style="color:white"><img src="assets/images/icons/fugue/tick-circle.png" width="16" height="16"> {{SaveBtn}}</button>&nbsp; &nbsp; &nbsp; &nbsp;
+                  <button type="button" class="red form_button" (click)="Reset()"><img src="assets/images/icons/fugue/arrow-circle.png" width="16" height="16"><span style="color:white"> Reset</span></button>
+                </div>
+              </div>
+
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <Document [EmployeeId]=EmployeeIdForDocument></Document>
+  </div>
+</section>
+
+<div class="clear"></div>
+
+

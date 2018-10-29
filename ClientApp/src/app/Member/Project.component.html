@@ -1,0 +1,70 @@
+<section class="grid_12">
+  <div class="block-border" style="position: relative;">
+    <form class="block-content form pt5" [formGroup]="Projectform" #formDir="ngForm" (ngSubmit)="save()" id="Projectform" method="post" action="#">
+
+      <h1>Project</h1>
+
+      <ul class="message {{ MessageType}}" style="position:fixed; bottom:10px; left:10px; display:none;">
+        <li><strong>{{ Message }}</strong>&nbsp; &nbsp; &nbsp;</li>
+        <li class="close-bt"></li>
+      </ul>
+
+      <div class="columns">
+        <div id="tab-locales">
+          <div id="tab-en">
+            <fieldset>
+              <div>
+                <table class="table" id="tablee" style="border: black;border-style:solid; border-width:thin; width:100%">
+                  <thead>
+                    <tr>
+                      <th scope="col" style="text-align:center">Sr. No.</th>
+                      <th scope="col">Project Name</th>
+                      <th scope="col">Address</th>
+                      <th scope="col">Area</th>
+                      <th scope="col" style="width: 50px; text-align:center">Action</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <tr>
+                      <td scope="col" style="text-align:center"><img src="assets/images/icons/fugue/arrow-circle.png" width="16" height="16" (click)="$event.stopPropagation();FillForm(0)"></td>
+
+                      <td scope="col"><input type="text" formControlName="ProjectName" class="full-width" /></td>
+                      <td scope="col"><input type="text" formControlName="Address" class="full-width" /></td>
+                      <td scope="col"><input type="text" formControlName="Area" class="full-width" /></td>
+
+                      <td scope="col" style="text-align:center">
+                        <button type="submit" class="form_button" style="color:white;text-align:center"> {{SaveBtn}}</button>
+                      </td>
+
+                    </tr>
+
+                    <tr *ngFor="let L of ProjectList; let i= index;">
+
+                      <td style="text-align:center">{{i+1}}</td>
+                      <td>{{L.ProjectName}}</td>
+                      <td>{{L.ProjectAddress}}</td>
+                      <td>{{L.Area}}</td>
+                      <td class="table-actions" style="text-align:center">
+                        <a (click)="$event.stopPropagation();FillForm(L.ProjectId)" title="Edit" class="with-tip" style="cursor: pointer;"><img src="assets/images/icons/fugue/magnifier.png" width="16" height="16"></a>
+                        <a (click)="$event.stopPropagation();Delete(L.ProjectId)" title="Delete" class="with-tip" style="cursor: pointer;"><img src="assets/images/icons/fugue/cross-circle.png" width="16" height="16"></a>
+                      </td>
+
+                    </tr>
+                  </tbody>
+                </table>
+
+
+              </div>
+
+            </fieldset>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+
+<div class="clear"></div>
+
+

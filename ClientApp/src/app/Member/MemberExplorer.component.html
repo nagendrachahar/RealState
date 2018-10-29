@@ -1,0 +1,56 @@
+<section class="grid_12">
+  <div class="block-border">
+    <form class="block-content form" id="table_form" method="post" action="#">
+      <h1>Member Explorer</h1>
+
+      <table class="table" style="border: black;border-style:solid; border-width:thin; width:100%">
+
+        <thead>
+          <tr>
+            <th style="padding:3px" scope="col" class="table-actions">&nbsp;</th>
+            <th style="padding:3px" scope="col" class="table-actions">Title</th>
+            <th style="padding:3px" scope="col" class="table-actions">Keywords</th>
+            <th style="padding:3px" scope="col" class="table-actions">Preview</th>
+            <th style="padding:3px" scope="col" class="table-actions">Date</th>
+            <th style="padding:3px" scope="col" class="table-actions">Size</th>
+            <th style="padding:3px" scope="col" class="table-actions">Actions</th>
+            <th style="padding:3px" scope="col" class="table-actions">&nbsp;</th>
+            <th style="padding:3px" scope="col" class="table-actions">Title</th>
+            <th style="padding:3px" scope="col" class="table-actions">Keywords</th>
+            <th style="padding:3px" scope="col" class="table-actions">Preview</th>
+            <th style="padding:3px" scope="col" class="table-actions">Date</th>
+            <th style="padding:3px" scope="col" class="table-actions">Size</th>
+
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let L of MemberList; let i= index;">
+            <td class="table-actions" style="padding:3px">
+              <a href="javascript:void(0)" title="View" class="with-tip"><img src="assets/images/icons/fugue/magnifier.png" width="16" height="16"></a>
+            </td>
+            <td style="padding:3px" nowrap>{{i+1}}</td>
+            <td style="padding:3px" nowrap>{{L.MemberCode}}</td>
+            <td style="padding:3px" nowrap>{{L.MemberName}}</td>
+            <td style="padding:3px" nowrap>{{L.MemberCode}}</td>
+            <td style="padding:3px" nowrap>{{L.MemberName}}</td>
+            <td style="padding:3px" nowrap>{{L.MemberCode}}</td>
+            <td style="padding:3px" nowrap>{{i+1}}</td>
+            <td style="padding:3px" nowrap>{{L.MemberCode}}</td>
+            <td style="padding:3px" nowrap>{{L.MemberName}}</td>
+            <td style="padding:3px" nowrap>{{L.MemberCode}}</td>
+            <td style="padding:3px" nowrap>{{L.MemberName}}</td>
+            <td style="padding:3px" nowrap>{{L.MemberCode}}</td>
+
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </form>
+  </div>
+</section>
+
+
+<div class="clear"></div>

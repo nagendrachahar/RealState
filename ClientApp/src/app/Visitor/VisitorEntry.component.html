@@ -1,0 +1,98 @@
+<section class="grid_12">
+  <div class="block-border" style="position: relative;">
+    <form class="block-content form" [formGroup]="VisitorEntry" #formDir="ngForm" (ngSubmit)="save()" id="VisitorEntry" method="post" action="#" style="padding-bottom:70px;">
+
+      <h1>Visitor Entry</h1>
+
+      <ul class="message {{MessageType}}" style="position:fixed; bottom:10px; left:10px; display:none;">
+        <li><strong>{{Message}}</strong>&nbsp; &nbsp; &nbsp;</li>
+        <li class="close-bt"></li>
+      </ul>
+
+      <div class="columns">
+        <div id="tab-locales">
+          <div id="tab-en">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+
+              <div class="col-md-3 col-sm-3 col-xs-12 required">
+                <label for="complex-title">Project</label>
+                <select formControlName="ProjectId" class="full-width">
+                  <option value="0"><:--Select Project--:></option>
+                  <option *ngFor="let P of ProjectList " value="{{P.ProjectId}}">{{P.ProjectName}}</option>
+                </select>
+              </div>
+
+              <div class="col-md-3 col-sm-3 col-xs-12">
+                <label for="complex-title">Visitor Name</label>
+                <input type="text" class="full-width" formControlName="VisitorName" required>
+              </div>
+
+              <div class="col-md-3 col-sm-3 col-xs-12">
+                <label for="complex-title">Contact</label>
+                <input type="text" class="full-width" formControlName="ContactNo" required>
+              </div>
+
+              <div class="col-md-3 col-sm-3 col-xs-12">
+                <label for="complex-title">Email Id</label>
+                <input type="email" class="full-width" formControlName="EmailId">
+              </div>
+
+              <div class="col-md-3 col-sm-3 col-xs-12">
+                <label for="complex-title">Visitor Purpose</label>
+                <input type="text" class="full-width" formControlName="Purpose">
+              </div>
+
+              <div class="col-md-3 col-sm-3 col-xs-12">
+                <label for="complex-title">Visit Date</label>
+                <input type="date" class="full-width" formControlName="VisitDate">
+              </div>
+
+              <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
+                <div class="align-center" style="margin-top:20px;">
+                  <button type="submit" class="form_button" style="color:white"><img src="assets/images/icons/fugue/tick-circle.png" width="16" height="16"> {{SaveBtn}}</button>&nbsp; &nbsp; &nbsp; &nbsp;
+                  <button type="button" class="red form_button" (click)="Reset()"><img src="assets/images/icons/fugue/arrow-circle.png" width="16" height="16"><span style="color:white"> Reset</span></button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <table class="table" id="tablee" style="border: black;border-style:solid; border-width:thin; width:100%">
+        <thead>
+          <tr>
+            <th scope="col" style="text-align:center">Sr. No.</th>
+            <th scope="col">VisitorName</th>
+            <th scope="col">ContactNo</th>
+            <th scope="col">EmailId</th>
+            <th scope="col">Purpose</th>
+            <th scope="col">VisitDate</th>
+            <th scope="col" style="width: 50px; text-align:center">Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let V of VisitorList; let i= index;">
+
+            <td style="text-align:center">{{i+1}}</td>
+            <td>{{V.VisitorName}}</td>
+            <td>{{V.ContactNo}}</td>
+            <td>{{V.EmailId}}</td>
+            <td>{{V.Purpose}}</td>
+            <td>{{V.VisitDate}}</td>
+            <td class="table-actions" style="text-align:center">
+              <a (click)="$event.stopPropagation();FillForm(V.VisitorId)" title="Edit" class="with-tip" style="cursor: pointer;"><img src="assets/images/icons/fugue/magnifier.png" width="16" height="16"></a>
+              <a (click)="$event.stopPropagation();Delete(V.VisitorId)" title="Delete" class="with-tip" style="cursor: pointer;"><img src="assets/images/icons/fugue/cross-circle.png" width="16" height="16"></a>
+            </td>
+
+          </tr>
+        </tbody>
+      </table>
+    </form>
+  </div>
+</section>
+
+<div class="clear"></div>
+
+

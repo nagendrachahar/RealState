@@ -1,0 +1,41 @@
+<div class="grid_3">
+
+  <section class="with-margin">
+    <div class="block-border">
+      <form class="block-content form" id="simple-list-form" method="post" action="#">
+        <h1>Configuration list</h1>
+
+        <p class="input-type-text">
+          <input type="text" name="simple-search" id="simple-search" value="" style="width:90%" title="Filter results">
+          <img src="assets/images/icons/fugue/magnifier.png" width="16" height="16" class="float-right">
+        </p>
+
+        <ul class="simple-list with-icon">
+          <li><a (click)="ShowSeries()">Series Setup</a></li>
+          <li><a (click)="ShowPrefrenceKey()">Prefrence Key</a></li>
+          <li><a (click)="ShowRelation()">SMS Setup</a></li>
+          <li><a (click)="ShowCity()">Money Transfer Setup</a></li>
+          <li><a (click)="ShowCity()">Change Financial Year</a></li>
+          <li><a (click)="ShowCity()">Software Login Time</a></li>
+          <li><a (click)="ShowCity()">Email Setup</a></li>
+          <li><a (click)="ShowCity()">Report Setup</a></li>
+        </ul>
+
+      </form>
+
+    </div>
+  </section>
+
+
+
+</div>
+
+<section class="grid_9">
+  <div class="childrout">
+    <Series *ngIf="isSeries"></Series>
+    <PrefrenceKey *ngIf="isPrefrenceKey"></PrefrenceKey>
+    <Relation *ngIf="isRelation"></Relation>
+  </div>
+</section>
+
+<div class="clear"></div>

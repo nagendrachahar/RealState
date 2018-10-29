@@ -1,0 +1,51 @@
+<section class="grid_12">
+  <div class="block-border">
+    <form class="block-content form" id="table_form" method="post" action="#" style="padding-bottom:70px;">
+      <h1>Employee Explorer</h1>
+
+      <ul class="message {{ MessageType}}" style="position:fixed; bottom:10px; left:10px; display:none;">
+        <li><strong>{{ Message }}</strong>&nbsp; &nbsp; &nbsp;</li>
+        <li class="close-bt"></li>
+      </ul>
+
+      <table class="table" id="tablee" style="border: black;border-style:solid; border-width:thin; width:100%">
+        <thead>
+          <tr>
+            <th style="padding:3px" scope="col" class="table-actions">&nbsp;</th>
+            <th style="padding:3px" scope="col" class="table-actions">Sr.</th>
+            <th style="padding:3px" scope="col" class="table-actions">EmployeeCode</th>
+            <th style="padding:3px" scope="col" class="table-actions">EmployeeName</th>
+            <th style="padding:3px" scope="col" class="table-actions">ContactNo</th>
+            <th style="padding:3px" scope="col" class="table-actions">FatherHusbandName</th>
+            <th style="padding:3px" scope="col" class="table-actions">MotherName</th>
+            <th style="padding:3px" scope="col" class="table-actions">Qualification</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let E of employeeExplorer; let i= index;">
+
+            <td class="table-actions" style="padding:3px">
+              <a href="javascript:void(0)" [routerLink]="['/ManageEmployee',E.EmployeeCode]" title="View" class="with-tip"><img src="assets/images/icons/fugue/magnifier.png" width="16" height="16"></a>
+              <a (click)="$event.stopPropagation();Delete(E.EmployeeId)" title="Delete" class="with-tip" style="cursor: pointer;"><img src="assets/images/icons/fugue/cross-circle.png" width="16" height="16"></a>
+            </td>
+            <td style="padding:3px" nowrap>{{i+1}}</td>
+            <td style="padding:3px" nowrap>{{E.EmployeeCode}}</td>
+            <td style="padding:3px" nowrap>{{E.EmployeeName}}</td>
+            <td style="padding:3px" nowrap>{{E.ContactNo}}</td>
+            <td style="padding:3px" nowrap>{{E.FatherHusbandName}}</td>
+            <td style="padding:3px" nowrap>{{E.MotherName}}</td>
+            <td style="padding:3px" nowrap>{{E.Qualification}}</td>
+
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </form>
+  </div>
+</section>
+
+
+<div class="clear"></div>

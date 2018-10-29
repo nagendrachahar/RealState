@@ -1,0 +1,113 @@
+<section class="grid_12">
+  <div class="block-border" style="position: relative;">
+    <form class="block-content form" [formGroup]="AccountTransaction" #formDir="ngForm" (ngSubmit)="save()" id="AccountTransaction" method="post" action="#" style="padding-bottom:70px;">
+
+      <h1>Account Transaction</h1>
+
+      <ul class="message {{ MessageType}}" style="position:fixed; bottom:10px; left:10px; display:none;">
+        <li><strong>{{ Message }}</strong>&nbsp; &nbsp; &nbsp;</li>
+        <li class="close-bt"></li>
+      </ul>
+
+      <div class="columns">
+        <div id="tab-locales">
+          <div id="tab-en">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <div class="col-md-3 col-sm-3 col-xs-12 required">
+                <label for="complex-title">Voucher No</label>
+                <input type="text" class="full-width" formControlName="VoucherNo" required>
+              </div>
+              <div class="col-md-3 col-sm-3 col-xs-12">
+                <label for="complex-title">Voucher Date</label>
+                <input type="date" class="full-width" formControlName="VoucherDate" required>
+              </div>
+
+              <div class="col-md-3 col-sm-6 col-xs-12 col-lg-3">
+                <label for="complex-title">Branch</label>
+                <select formControlName="BranchId" class="full-width">
+                  <option value="0"><:--Select Branch--:></option>
+                  <option *ngFor="let B of BranchList" value="{{B.branchID}}">{{B.branchName}}</option>
+                </select>
+              </div>
+
+              <div class="col-md-3 col-sm-3 col-xs-12">
+                <label for="complex-title">Project</label>
+                <select name="complex-en-style" formControlName="ProjectId" class="full-width">
+                  <option value="0"><:--Select State--:></option>
+                  <option *ngFor="let P of ProjectList " value="{{P.ProjectId}}">{{P.ProjectName}}</option>
+                </select>
+              </div>
+
+              <div class="col-md-3 col-sm-3 col-xs-12">
+                <label for="complex-title">From Ledgere</label>
+                <select name="complex-en-style" formControlName="FromLedger" class="full-width">
+                  <option value="0"><:--Select State--:></option>
+                  <option *ngFor="let L of LedgerList " value="{{L.LedgerId}}">{{L.LedgerName}}</option>
+                </select>
+              </div>
+
+              <div class="col-md-3 col-sm-3 col-xs-12">
+                <label for="complex-title">To Ledger</label>
+                <select name="complex-en-style" formControlName="ToLedger" class="full-width">
+                  <option value="0"><:--Select State--:></option>
+                  <option *ngFor="let L of LedgerList " value="{{L.LedgerId}}">{{L.LedgerName}}</option>
+                </select>
+              </div>
+
+              <div class="col-md-3 col-sm-3 col-xs-12">
+                <label for="complex-title">Remark</label>
+                <input type="date" class="full-width" formControlName="Remark" required>
+              </div>
+
+
+              <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
+                <div class="align-center" style="margin-top:20px;">
+                  <button type="submit" class="form_button" style="color:white"><img src="assets/images/icons/fugue/tick-circle.png" width="16" height="16"> {{SaveBtn}}</button>&nbsp; &nbsp; &nbsp; &nbsp;
+                  <button type="button" class="red form_button" (click)="Reset()"><img src="assets/images/icons/fugue/arrow-circle.png" width="16" height="16"><span style="color:white"> Reset</span></button>
+                </div>
+              </div>
+
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <table class="table" id="tablee" style="border: black;border-style:solid; border-width:thin; width:100%">
+        <thead>
+          <tr>
+            <th scope="col" style="text-align:center">Sr. No.</th>
+            <th scope="col">VoucherNo</th>
+            <th scope="col">VoucherDate</th>
+            <th scope="col">ProjectName</th>
+            <th scope="col">FromLedger</th>
+            <th scope="col">ToLedger</th>
+            <th scope="col" style="width: 50px; text-align:center">Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let L of AccountTransactionList; let i= index;">
+
+            <td style="text-align:center">{{i+1}}</td>
+            <td>{{L.VoucherNo}}</td>
+            <td>{{L.VoucherDate}}</td>
+            <td>{{L.ProjectName}}</td>
+            <td>{{L.FromLedger}}</td>
+            <td>{{L.ToLedger}}</td>
+            <td class="table-actions" style="text-align:center">
+              <a (click)="$event.stopPropagation();FillForm(L.AccountTransactionId)" title="Edit" class="with-tip" style="cursor: pointer;"><img src="assets/images/icons/fugue/magnifier.png" width="16" height="16"></a>
+              <a (click)="$event.stopPropagation();Delete(L.AccountTransactionId)" title="Delete" class="with-tip" style="cursor: pointer;"><img src="assets/images/icons/fugue/cross-circle.png" width="16" height="16"></a>
+            </td>
+
+          </tr>
+        </tbody>
+      </table>
+    </form>
+  </div>
+</section>
+
+<div class="clear"></div>
+
+

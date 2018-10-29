@@ -1,10 +1,100 @@
-<div class='container-fluid'>
-  <div class='row'>
-    <div class='col-sm-3'>
-      <app-nav-menu></app-nav-menu>
-    </div>
-    <div class='col-sm-9 body-content'>
-      <router-outlet></router-outlet>
-    </div>
+<header>
+  <div class="container_12">
+    <p id="skin-name"><small>Financial<br />Year</small> <strong>{{FinancialYearName}}</strong></p>
+    <div class="server-info">Logged As : <strong>{{UserName}}</strong></div>
+    <div class="server-info">Branch : <strong>{{BranchName}}</strong></div>
+    <div class="server-info">Balance : <strong>1000 Cr.</strong></div>
+  </div>
+</header>
+
+<!-- Main nav -->
+<nav id="main-nav"> 
+  <ul class="container_12">
+    <li class="current" style="background:none">
+      <h1 style="color:white; font-family:'Imprint MT Shadow'; font-size:50px">{{CompanyName}}</h1>
+      <ul id="MenuCon">
+        <li class="current"><a href="javascript:void(0)" title="Dashboard">Dashboard</a></li>
+
+        <li *ngFor="let m of getParent()" class="with-menu">
+          <a href="javascript:void(0)" title="My settings">{{m.MenuName}}</a>
+
+          <div *ngIf="checkChild(MenuList, m.MenuId)" class="menu">
+            <img src="assets/images/menu-open-arrow.png" width="16" height="16">
+            <ul>
+              <li *ngFor="let c of getChild(m.MenuId)" class="icon_down"><a [routerLink]="[c.Url]">{{c.MenuName}}</a></li>
+            </ul>
+          </div>
+
+        </li>
+
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+<!-- Sub nav -->
+
+<div id="sub-nav">
+  <div class="container_12 main_search" >
+    <a href="javascript:void(0)" title="Help" class="nav-button" style="height:10px; margin:3px 0px 0px 4px;">
+    <b style="height:25px;">FIND</b></a>
+    <form id="search-form" name="search-form" method="post" action="">
+        <input type="text" name="s" id="s" value="" title="Search admin..." style="height:22px; margin:3px 0px 0px 4px; color:black" autocomplete="off">
+    </form>
   </div>
 </div>
+
+<div id="status-bar">
+  <div class="container_12">
+
+    <ul id="status-infos">
+      <li>
+        <a href="/Change Password" class="button blue" title="Change Password"><span class="small"><i fa fa-shutdown></i>Change Password</span></a>
+      </li>
+      <li>
+        <a href="Login/Logout" class="button red" title="Logout"><span class="small"><i fa fa-shutdown></i>LOGOUT</span></a>
+      </li>
+
+    </ul>
+    <ul id="breadcrumb">
+      <li><a [routerLink]="['/']" title="Home">Home</a></li>
+      <li><a [routerLink]="['/fetch-data']">Dashboard</a></li>
+    </ul>
+
+  </div>
+</div>
+
+<div id="header-shadow"></div>
+
+<article class="container_12">
+
+  <router-outlet></router-outlet>
+
+  <div class="clear"></div>
+
+</article>
+
+<footer>
+
+  <div class="float-left">
+    <a href="javascript:void(0)" class="button">&copy; 2018</a>
+    <a href="nbfc.indiansoftking.com" class="button">&reg; Indian Softking Pvt. Ltd.</a>
+
+  </div>
+  <a class="button" style="width:100%"><marquee style="color:darkred;">Notice : Please update software licence before 01-Apr-2018...</marquee></a>
+  <div class="float-right">
+    <a href="#top" class="button"><img src="assets/images/icons/fugue/navigation-090.png" width="18" height="18"> Page top</a>
+  </div>
+
+</footer>
+
+<!-- Combined JS load -->
+<script src="js/minia4f1.js"></script>
+<!--[if lte IE 8]><script src="js/standard.ie.js"></script><![endif]-->
+<!-- Plugins -->
+<script src="js/libs/jquery.dataTables.min.js"></script>
+<script src="js/libs/jquery.datepick/jquery.datepick.min.js"></script>
+
+<!-- Charts library -->
+<!--Load the AJAX API-->
+<script src="http://www.google.com/jsapi"></script>

@@ -1,0 +1,121 @@
+<section class="grid_12">
+  <div class="block-border" style="position: relative;">
+    <form class="block-content form" [formGroup]="Branchform" #formDir="ngForm" (ngSubmit)="save()" id="Branchform" method="post" action="#" style="padding-bottom:70px;">
+
+      <h1>Branch</h1>
+      <div style="display:none">
+        <input type="text" formControlName="BranchId">
+      </div>
+      <ul class="message {{ MessageType}}" style="position:fixed; bottom:10px; left:10px; display:none;">
+        <li><strong>{{ Message }}</strong>&nbsp; &nbsp; &nbsp;</li>
+        <li class="close-bt"></li>
+      </ul>
+
+      <div class="columns">
+        <div id="tab-locales">
+          <div id="tab-en">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <div class="col-md-4 col-sm-12 col-xs-12 required">
+                <label for="complex-title">Branch Code</label>
+                <input type="text" class="full-width" formControlName="BranchCode" required>
+              </div>
+              <div class="col-md-4 col-sm-12 col-xs-12">
+                <label for="complex-title">Branch Name</label>
+                <input type="text" class="full-width" formControlName="BranchName" required>
+              </div>
+
+              <div class="col-md-4 col-sm-12 col-xs-12">
+                <label for="complex-title">Open Date</label>
+                <input type="date" class="full-width" formControlName="RegistrationDate">
+              </div>
+
+              <div class="col-md-4 col-sm-12 col-xs-12" style="margin-bottom:-3px">
+                <label for="complex-title">Incharge Person</label>
+                <input type="text" class="full-width" formControlName="InchargePerson">
+              </div>
+
+              <div class="col-md-4 col-sm-12 col-xs-12" style="margin-bottom:-3px">
+                <label for="complex-title">Address</label>
+                <input type="text" class="full-width" formControlName="Address">
+              </div>
+              <div class="col-md-4 col-sm-12 col-xs-12">
+                <label for="complex-title">State</label>
+                <select name="complex-en-style" formControlName="StateID" class="full-width" (change)="StateChange($event.target.value)">
+                  <option value="0"><:--Select State--:></option>
+                  <option *ngFor="let G of StateList " value="{{G.stateId}}">{{G.stateName}}</option>
+                </select>
+              </div>
+              <div class="col-md-4 col-sm-12 col-xs-12">
+                <label for="complex-title">City</label>
+                <select name="complex-en-style" formControlName="CityId" class="full-width">
+                  <option value="0"><:--Select City--:></option>
+                  <option *ngFor="let G of CityList " value="{{G.cityId}}">{{G.cityName}}</option>
+                </select>
+              </div>
+              <div class="col-md-4 col-sm-12 col-xs-12">
+                <label for="complex-title">Pin Code</label>
+                <input type="text" class="full-width" maxlength="6" formControlName="Pincode">
+              </div>
+              <div class="col-md-4 col-sm-12 col-xs-12">
+                <label for="complex-title">Contact No.</label>
+                <input type="text" class="full-width" maxlength="6" formControlName="ContactNo">
+              </div>
+              <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
+                <div class="align-center" style="margin-top:20px;">
+                  <button type="submit" class="form_button" style="color:white"><img src="assets/images/icons/fugue/tick-circle.png" width="16" height="16"> {{SaveBtn}}</button>&nbsp; &nbsp; &nbsp; &nbsp;
+                  <button type="button" class="red form_button" (click)="Reset()"><img src="assets/images/icons/fugue/arrow-circle.png" width="16" height="16"><span style="color:white"> Reset</span></button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <table class="table" id="tablee" style="border: black;border-style:solid; border-width:thin; width:100%">
+        <thead>
+          <tr>
+            <th scope="col" style="text-align:center">Sr. No.</th>
+            <th scope="col">Branch Code</th>
+            <th scope="col">Branch Name</th>
+            <th scope="col">Open Date</th>
+            <th scope="col">Incharge Person</th>
+            <th scope="col">Address</th>
+            <th scope="col">City</th>
+            <th scope="col">State</th>
+            <th scope="col">Pincode</th>
+            <th scope="col">Contact No.</th>
+            <th scope="col" style="width: 50px; text-align:center">Action</th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let L of BranchList; let i= index;">
+
+            <td style="text-align:center">{{i+1}}</td>
+            <td>{{L.branchCode}}</td>
+            <td>{{L.branchName}}</td>
+            <td>{{L.registrationDate|date:'dd-MMM-yyyy'}}</td>
+            <td>{{L.inchargePerson}}</td>
+            <td>{{L.address}}</td>
+            <td>{{L.cityID}}</td>
+            <td>{{L.stateID}}</td>
+            <td>{{L.pinCode}}</td>
+            <td>{{L.contactNo}}</td>
+            <td class="table-actions" style="text-align:center">
+              <a (click)="$event.stopPropagation();FillForm(L.branchID)" title="Edit" class="with-tip" style="cursor: pointer;"><img src="assets/images/icons/fugue/magnifier.png" width="16" height="16"></a>
+
+              <a (click)="$event.stopPropagation();Delete(L.branchID)" title="Delete" class="with-tip" style="cursor: pointer;"><img src="assets/images/icons/fugue/cross-circle.png" width="16" height="16"></a>
+            </td>
+         
+          </tr>
+        </tbody>
+      </table>
+    </form>
+  </div>
+</section>
+
+<div class="clear"></div>
+
+

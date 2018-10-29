@@ -1,0 +1,82 @@
+<section class="grid_12">
+  <div class="block-border" style="position: relative;">
+    <form class="block-content form" [formGroup]="RemunerationStructure" #formDir="ngForm" (ngSubmit)="save()" id="RemunerationStructure" method="post" action="#" style="padding-bottom:70px;">
+
+      <h1>Remuneration Structure</h1>
+
+      <ul class="message {{MessageType}}" style="position:fixed; bottom:10px; left:10px; display:none;">
+        <li><strong>{{Message}}</strong>&nbsp; &nbsp; &nbsp;</li>
+        <li class="close-bt"></li>
+      </ul>
+
+      <div class="columns">
+        <div id="tab-locales">
+          <div id="tab-en">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+
+              <div class="col-md-3 col-sm-6 col-xs-12 col-lg-3">
+                <label for="complex-title">Department</label>
+                <select formControlName="DepartmentId" class="full-width">
+                  <option value="0"><:--Select Department--:></option>
+                  <option *ngFor="let D of DepartmentList" value="{{D.DepartmentId}}">{{D.DepartmentName}}</option>
+                </select>
+              </div>
+
+              <div class="col-md-3 col-sm-6 col-xs-12 col-lg-3">
+                <label for="complex-title">Designation</label>
+                <select formControlName="DesignationId" class="full-width">
+                  <option value="0"><:--Select Designation--:></option>
+                  <option *ngFor="let D of DesignationList" value="{{D.DesignationId}}">{{D.DesignationName}}</option>
+                </select>
+              </div>
+
+              <div class="col-md-3 col-sm-3 col-xs-12">
+                <label for="complex-title">Remuneration</label>
+                <input type="text" class="full-width" formControlName="RemunerationPer" required>
+              </div>
+
+              <div class="col-md-3 col-sm-3 col-xs-12 col-lg-3">
+                <div class="align-center" style="margin-top:20px;">
+                  <button type="submit" class="form_button" style="color:white"><img src="assets/images/icons/fugue/tick-circle.png" width="16" height="16"> {{SaveBtn}}</button>&nbsp; &nbsp; &nbsp; &nbsp;
+                  <button type="button" class="red form_button" (click)="Reset()"><img src="assets/images/icons/fugue/arrow-circle.png" width="16" height="16"><span style="color:white"> Reset</span></button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <table class="table" id="tablee" style="border: black;border-style:solid; border-width:thin; width:100%">
+        <thead>
+          <tr>
+            <th scope="col" style="text-align:center">Sr. No.</th>
+            <th scope="col">Department</th>
+            <th scope="col">Designation</th>
+            <th scope="col">Remuneration</th>
+            <th scope="col" style="width: 50px; text-align:center">Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let R of RemunerationList; let i= index;">
+
+            <td style="text-align:center">{{i+1}}</td>
+            <td>{{R.DepartmentName}}</td>
+            <td>{{R.DesignationName}}</td>
+            <td>{{R.RemunerationPer}}</td>
+            <td class="table-actions" style="text-align:center">
+              <a (click)="$event.stopPropagation();FillForm(R.RemunerationId)" title="Edit" class="with-tip" style="cursor: pointer;"><img src="assets/images/icons/fugue/magnifier.png" width="16" height="16"></a>
+              <a (click)="$event.stopPropagation();Delete(R.RemunerationId)" title="Delete" class="with-tip" style="cursor: pointer;"><img src="assets/images/icons/fugue/cross-circle.png" width="16" height="16"></a>
+            </td>
+
+          </tr>
+        </tbody>
+      </table>
+    </form>
+  </div>
+</section>
+
+<div class="clear"></div>
+
+

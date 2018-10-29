@@ -1,0 +1,86 @@
+<section class="grid_12">
+  <div class="block-border" style="position: relative;">
+    <form class="block-content form" [formGroup]="ManageUser" #formDir="ngForm" (ngSubmit)="save()" id="ManageUser" method="post" action="#" style="padding-bottom:70px;">
+
+      <h1>Manage User</h1>
+
+      <ul class="message {{MessageType}}" style="position:fixed; bottom:10px; left:10px; display:none;">
+        <li><strong>{{Message}}</strong>&nbsp; &nbsp; &nbsp;</li>
+        <li class="close-bt"></li>
+      </ul>
+
+      <div class="columns">
+        <div id="tab-locales">
+          <div id="tab-en">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+
+              <div class="col-md-3 col-sm-3 col-xs-12 required">
+                <label for="complex-title">User Code</label>
+                <input type="text" class="full-width" formControlName="UserCode" required>
+              </div>
+
+              <div class="col-md-3 col-sm-3 col-xs-12">
+                <label for="complex-title">User Name</label>
+                <input type="text" class="full-width" formControlName="UserName" required>
+              </div>
+
+              <div class="col-md-3 col-sm-6 col-xs-12 col-lg-3">
+                <label for="complex-title">Branch</label>
+                <select formControlName="BranchId" class="full-width">
+                  <option value="0"><:--Select Branch--:></option>
+                  <option *ngFor="let B of BranchList" value="{{B.branchID}}">{{B.branchName}}</option>
+                </select>
+              </div>
+
+              <div class="col-md-3 col-sm-3 col-xs-12">
+                <label for="complex-title">Password</label>
+                <input type="password" class="full-width" formControlName="Password" required>
+              </div>
+
+              <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
+                <div class="align-center" style="margin-top:20px;">
+                  <button type="submit" class="form_button" style="color:white"><img src="assets/images/icons/fugue/tick-circle.png" width="16" height="16"> {{SaveBtn}}</button>&nbsp; &nbsp; &nbsp; &nbsp;
+                  <button type="button" class="red form_button" (click)="Reset()"><img src="assets/images/icons/fugue/arrow-circle.png" width="16" height="16"><span style="color:white"> Reset</span></button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <table class="table" id="tablee" style="border: black;border-style:solid; border-width:thin; width:100%">
+        <thead>
+          <tr>
+            <th scope="col" style="text-align:center">Sr. No.</th>
+            <th scope="col">UserCode</th>
+            <th scope="col">UserName</th>
+            <th scope="col">Password</th>
+            <th scope="col">BranchName</th>
+            <th scope="col" style="width: 50px; text-align:center">Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let U of UserList; let i= index;">
+
+            <td style="text-align:center">{{i+1}}</td>
+            <td>{{U.UserCode}}</td>
+            <td>{{U.UserName}}</td>
+            <td>{{U.Password}}</td>
+            <td>{{U.BranchName}}</td>
+            <td class="table-actions" style="text-align:center">
+              <a (click)="$event.stopPropagation();FillForm(U.UserId)" title="Edit" class="with-tip" style="cursor: pointer;"><img src="assets/images/icons/fugue/magnifier.png" width="16" height="16"></a>
+              <a (click)="$event.stopPropagation();Delete(U.UserId)" title="Delete" class="with-tip" style="cursor: pointer;"><img src="assets/images/icons/fugue/cross-circle.png" width="16" height="16"></a>
+            </td>
+
+          </tr>
+        </tbody>
+      </table>
+    </form>
+  </div>
+</section>
+
+<div class="clear"></div>
+
+

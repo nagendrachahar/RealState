@@ -1,0 +1,182 @@
+<section class="grid_12">
+  <div class="block-border" style="position: relative;">
+    <form class="block-content form" [formGroup]="PlotDetailform" #PlotDetail="ngForm" (ngSubmit)="save()" id="PlotDetailform" method="post" action="#">
+
+      <h1>Plot Detail</h1>
+     
+      <ul class="message {{ MessageType}}" style="position:fixed; bottom:10px; left:10px; display:none;">
+        <li><strong>{{ Message }}</strong>&nbsp; &nbsp; &nbsp;</li>
+        <li class="close-bt"></li>
+      </ul>
+
+      <div class="columns">
+        <div id="tab-locales">
+          <div id="tab-en">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+
+              <div class="col-md-4 col-sm-12 col-xs-12 required">
+                <label for="complex-title">Project</label>
+                <select id="ProjectId" formControlName="ProjectId" class="full-width" (change)="ProjectChange($event.target.value)" required>
+                  <!--<option value="0"><:--Select Project--:></option>-->
+                  <option *ngFor="let P of ProjectList " value="{{P.ProjectId}}">{{P.ProjectName}}</option>
+                </select>
+                <div *ngIf="ProjectId.invalid && (ProjectId.dirty || ProjectId.touched)"
+                     class="alert alert-danger">
+
+                  <div *ngIf="ProjectId.errors.required">
+                    Project is required.
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4 col-sm-12 col-xs-12 required">
+                <label for="complex-title">Sector</label>
+                <select id="SectorId" formControlName="SectorId" class="full-width" (change)="SectorChange($event.target.value)" required>
+                  <!--<option value="0"><:--Select Sector--:></option>-->
+                  <option *ngFor="let S of SectorList " value="{{S.SectorId}}">{{S.SectorName}}</option>
+                </select>
+
+                <div *ngIf="SectorId.invalid && (SectorId.dirty || SectorId.touched)"
+                     class="alert alert-danger">
+
+                  <div *ngIf="SectorId.errors.required">
+                    Sector is required.
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="col-md-4 col-sm-12 col-xs-12 required">
+                <label for="complex-title">Block</label>
+                <select id="BlockId" formControlName="BlockId" class="full-width" required>
+                  <!--<option value="0"><:--Select Block--:></option>-->
+                  <option *ngFor="let B of BlockList " value="{{B.BlockId}}">{{B.BlockName}}</option>
+                </select>
+
+                <div *ngIf="BlockId.invalid && (BlockId.dirty || BlockId.touched)"
+                     class="alert alert-danger">
+
+                  <div *ngIf="BlockId.errors.required">
+                    Block is required.
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="col-md-4 col-sm-12 col-xs-12">
+                <label for="complex-title">Segment</label>
+                <select formControlName="SegmentId" class="full-width">
+                  <option value="0"><:--Select Segment--:></option>
+                  <option *ngFor="let S of SegmentList " value="{{S.SegmentId}}">{{S.SegmentName}}</option>
+                </select>
+              </div>
+
+              <div class="col-md-4 col-sm-12 col-xs-12">
+                <label for="complex-title">Plot Type</label>
+                <select formControlName="PlotTypeId" class="full-width">
+                  <option value="0"><:--Select Plot Type--:></option>
+                  <option *ngFor="let P of PlotTypeList " value="{{P.PlottypeId}}">{{P.PlottypeName}}</option>
+                </select>
+              </div>
+
+              <div class="col-md-4 col-sm-12 col-xs-12">
+                <label for="complex-title">Rate</label>
+                <select formControlName="RateId" class="full-width">
+                  <option value="0"><:--Select Rate--:></option>
+                  <option *ngFor="let R of RateList " value="{{R.RateId}}">{{R.Price}}</option>
+                </select>
+              </div>
+
+              <div class="col-md-4 col-sm-12 col-xs-12">
+                <label for="complex-title">Area(sqfeet)</label>
+                <input id="Area" type="text" class="full-width" formControlName="Area" required>
+                <div *ngIf="Area.invalid && (Area.dirty || Area.touched)"
+                     class="alert alert-danger">
+
+                  <div *ngIf="Area.errors.required">
+                    Area is required.
+                  </div>
+                  <div *ngIf="Area.errors.minlength">
+                    Area must be at least 4 characters long.
+                  </div>
+                  
+                </div>
+              </div>
+
+              <div class="col-md-4 col-sm-12 col-xs-12">
+                <label for="complex-title">Plot No</label>
+                <input type="text" class="full-width" formControlName="PlotNo">
+              </div>
+
+              <div class="col-md-4 col-sm-12 col-xs-12">
+                <label for="complex-title">No. of Plot</label>
+
+                <div class="col-md-6 col-sm-6 col-xs-6 pt0">
+                  <input type="text" class="full-width" formControlName="FromPlot">
+                </div>
+
+                <div class="col-md6 col-sm-6 col-xs-6 pt0">
+                  <input type="text" class="full-width" formControlName="ToPlot">
+                </div>
+
+              </div>
+
+              <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
+
+                <div class="align-center" style="margin-top:20px;">
+                  <button type="submit" class="form_button" [disabled]="!PlotDetail.form.valid" style="color:white"><img src="assets/images/icons/fugue/tick-circle.png" width="16" height="16"> {{SaveBtn}}</button>&nbsp; &nbsp; &nbsp; &nbsp;
+                  <button type="button" class="red form_button" (click)="Reset()"><img src="assets/images/icons/fugue/arrow-circle.png" width="16" height="16"><span style="color:white"> Reset</span></button>
+                </div>
+
+              </div>
+
+              </div>
+
+          </div>
+        </div>
+      </div>
+
+      <table class="table" style="border: black;border-style:solid; border-width:thin; width:100%">
+        <thead>
+          <tr>
+            <th scope="col" style="text-align:center">Sr. No.</th>
+            <th scope="col">ProjectName</th>
+            <th scope="col">SectorName</th>
+            <th scope="col">BlockName</th>
+            <th scope="col">SegmentName</th>
+            <th scope="col">PlottypeName</th>
+            <th scope="col">Price</th>
+            <th scope="col">Area</th>
+            <th scope="col">PlotNo</th>
+            <th scope="col" style="width: 50px; text-align:center">Action</th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let P of PlotDetailList; let i= index;">
+
+            <td style="text-align:center">{{i+1}}</td>
+            <td>{{P.ProjectName}}</td>
+            <td>{{P.SectorName}}</td>
+            <td>{{P.BlockName}}</td>
+            <td>{{P.SegmentName}}</td>
+            <td>{{P.PlottypeName}}</td>
+            <td>{{P.Price}}</td>
+            <td>{{P.Area}}</td>
+            <td>{{P.PlotNo}}</td>
+            <td class="table-actions" style="text-align:center">
+              <a (click)="$event.stopPropagation();FillForm(P.PlotDetailId)" title="Edit" class="with-tip" style="cursor: pointer;"><img src="assets/images/icons/fugue/magnifier.png" width="16" height="16"></a>
+              <a (click)="$event.stopPropagation();Delete(P.PlotDetailId)" title="Delete" class="with-tip" style="cursor: pointer;"><img src="assets/images/icons/fugue/cross-circle.png" width="16" height="16"></a>
+            </td>
+
+          </tr>
+        </tbody>
+      </table>
+    </form>
+  </div>
+</section>
+
+<div class="clear"></div>
+
+

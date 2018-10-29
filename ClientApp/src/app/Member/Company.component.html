@@ -1,0 +1,98 @@
+<section class="grid_12">
+  <div class="block-border" style="position: relative;">
+    <form class="block-content form" [formGroup]="Companyform" #formDir="ngForm" (ngSubmit)="save()" id="Companyform" method="post" action="#">
+
+      <h1>Company</h1>
+            <ul class="message {{ MessageType}}" style="position:fixed; bottom:10px; left:10px; display:none;">
+        <li><strong>{{ Message }}</strong>&nbsp; &nbsp; &nbsp;</li>
+        <li class="close-bt"></li>
+      </ul>
+
+      <div class="columns">
+        <div id="tab-locales">
+          <div id="tab-en">
+              <div class="col-md-1 col-sm-12 col-xs-12 col-lg-1" style="padding-left: 0px; padding-right: 0px;">
+                <div class="profile_img">
+                  <img src="assets/images/blankprofile.jpg" style="width: 100px; height: 110px;">
+                </div>
+                <div class="profile_img">
+                  <input type="file" style="width:100px">
+                </div>
+              </div>
+              <div class="col-md-11 col-sm-12 col-xs-12 col-lg-11" style="padding-left:30px">
+                <div class="col-md-3 col-sm-12 col-xs-12 col-lg-3 required">
+                  <label for="complex-title">Company Code</label>
+                  <input type="text" class="full-width" formControlName="CompanyCode" required>
+                </div>
+                <div class="col-md-3 col-sm-12 col-xs-12 col-lg-3 required">
+                  <label for="complex-title">Company Name</label>
+                  <input type="text" class="full-width" formControlName="CompanyName" required>
+                </div>
+
+                <div class="col-md-3 col-sm-12 col-xs-12 col-lg-3">
+                  <label for="complex-title">CIN No.</label>
+                  <input type="text" class="full-width" formControlName="CIN">
+                </div>
+
+                <div class="col-md-3 col-sm-12 col-xs-12 col-lg-3">
+                  <label for="complex-title">PAN No.</label>
+                  <input type="text" class="full-width" formControlName="PAN">
+                </div>
+
+                <div class="col-md-3 col-sm-12 col-xs-12 col-lg-3">
+                  <label for="complex-title">Website</label>
+                  <input type="text" class="full-width" formControlName="Website">
+                </div>
+                <div class="col-md-3 col-sm-12 col-xs-12 col-lg-3">
+                  <label for="complex-title">Email ID</label>
+                  <input type="email" class="full-width" formControlName="EmailId">
+                </div>
+
+                <div class="col-md-3 col-sm-12 col-xs-12 col-lg-3">
+                  <label for="complex-title">Contact No.</label>
+                  <input type="number" class="full-width" formControlName="ContactNo" maxlength="10">
+                </div>
+                <div class="col-md-3 col-sm-12 col-xs-12 col-lg-3">
+                  <label for="complex-title">Registration Date</label>
+                  <input type="date" class="full-width" formControlName="RegistrationDate">
+                </div>
+                <div class="col-md-3 col-sm-12 col-xs-12 col-lg-3" style="margin-bottom:-3px">
+                  <label for="complex-title">Address</label>
+                  <input type="text" class="full-width" formControlName="Address">
+                </div>
+                <div class="col-md-3 col-sm-12 col-xs-12 col-lg-3">
+                  <label for="complex-title">State</label>
+                  <select name="complex-en-style" formControlName="StateId" class="full-width" (change)="StateChange($event.target.value)">
+                    <option value="0"><:--Select State--:></option>
+                    <option *ngFor="let G of StateList " value="{{G.stateId}}">{{G.stateName}}</option>
+                  </select>
+                </div>
+                <div class="col-md-3 col-sm-12 col-xs-12 col-lg-3">
+                  <label for="complex-title">City</label>
+                  <select name="complex-en-style" formControlName="CityId" class="full-width">
+                    <option value="0"><:--Select City--:></option>
+                    <option *ngFor="let G of CityList " value="{{G.cityId}}">{{G.cityName}}</option>
+                  </select>
+                </div>
+                <div class="col-md-3 col-sm-12 col-xs-12 col-lg-3">
+                  <label for="complex-title">Pin Code</label>
+                  <input type="text" class="full-width" maxlength="6" formControlName="Pincode">
+                </div>
+                <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
+                  <div class="align-center" style="margin-top:20px;">
+                    <button type="submit" class="form_button" style="color:white"><img src="assets/images/icons/fugue/tick-circle.png" width="16" height="16"> {{SaveBtn}}</button>&nbsp; &nbsp; &nbsp; &nbsp; 
+                    <button type="button" class="red form_button" (click)="Reset()"><img src="assets/images/icons/fugue/arrow-circle.png" width="16" height="16"><span style="color:white"> Reset</span></button>
+                  </div>
+                </div>
+              </div>
+
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+
+<div class="clear"></div>
+
+
