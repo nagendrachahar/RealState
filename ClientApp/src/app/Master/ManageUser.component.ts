@@ -175,7 +175,6 @@ export class ManageUserComponent implements OnInit {
     });
   }
   
-
   fillUser() {
     this.service.FillUsers().subscribe((data) => {
       this.UserList = data;

@@ -127,9 +127,9 @@ namespace Realstate.Controllers
             {
                 using (SqlConnection con = new SqlConnection(Db.Database.GetDbConnection().ConnectionString))
                 {
-                    Query = @"Select M.MenuId, M.MenuName, isnull(U.UserId, 0) as UserId, isnull(U.MenuNo, 0) as MenuNo, isnull(U.[Save], 0) as [Save] ,isnull(U.[Update], 0) as [Update], isnull(U.[Delete],0) as [Delete], isNull(U.[View],0) as [View] 
+                    Query = @"Select M.MenuId, M.MenuName,m.ParentID, isnull(U.UserId, 0) as UserId, isnull(U.MenuNo, 0) as MenuNo, isnull(U.[Save], 0) as [Save] ,isnull(U.[Update], 0) as [Update], isnull(U.[Delete],0) as [Delete], isNull(U.[View],0) as [View] 
                          from Menu M
-                        left join User_Det U on U.MenuNo=M.MenuId and U.UserId="+ UserId;
+                        left join User_Det U on U.MenuNo=M.MenuId and U.UserId=" + UserId;
 
                     SqlCommand cmd = new SqlCommand(Query, con);
                     SqlDataAdapter da = new SqlDataAdapter();

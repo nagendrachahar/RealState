@@ -1,0 +1,60 @@
+ul, #myULl {
+  list-style-type: none;
+}
+ul{
+  padding-left:40px;
+}
+
+#myULl {
+  margin: 0;
+  padding: 0;
+}
+
+.carett {
+  cursor: pointer;
+  -webkit-user-select: none; /* Safari 3.1+ */
+  -moz-user-select: none; /* Firefox 2+ */
+  -ms-user-select: none; /* IE 10+ */
+  user-select: none;
+}
+
+  .carett::before {
+    content: "\25B6";
+    color: black;
+    display: inline-block;
+    margin-right: 6px;
+  }
+
+.caret-downn::before {
+  -ms-transform: rotate(90deg); /* IE 9 */
+  -webkit-transform: rotate(90deg); /* Safari */
+   transform: rotate(90deg);
+}
+
+.nestedd {
+  display: none;
+}
+
+.activee {
+  display: block;
+}
+
+.treeviewflags{
+  padding-left:30px;
+}
+
+.treeviewflags label{
+  display:inline-block;
+  padding:3px 10px;
+}
+
+/*#myULl li span:before {
+  display: block;
+  content: " ";
+  width: 10px;
+  height: 1px;
+  position: absolute;
+  border-bottom: 1px dotted #aaa;
+  top: .6em;
+  left: -14px;
+}*/

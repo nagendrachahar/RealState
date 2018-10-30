@@ -58,6 +58,7 @@ import { GraphicViewSectorComponent } from './GraphicView/GraphicViewSector.comp
 import { GraphicViewBlockComponent } from './GraphicView/GraphicViewBlock.component';
 
 import { VisitorEntryComponent } from './Visitor/VisitorEntry.component';
+import { AccessDataComponent } from './Master/AccessData.component';
 
 
 
@@ -109,7 +110,8 @@ import { EmployeeService } from './services/Employee.service';
     GraphicViewBlockComponent,
     PlotDetailComponent,
     ProjectDropComponent,
-    VisitorEntryComponent
+    VisitorEntryComponent,
+    AccessDataComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -145,6 +147,7 @@ import { EmployeeService } from './services/Employee.service';
       { path: 'GraphicViewSector/:id', component: GraphicViewSectorComponent },
       { path: 'GraphicViewBlock/:id', component: GraphicViewBlockComponent },
       { path: 'VisitorEntry', component: VisitorEntryComponent },
+      { path: 'AccessData', component: AccessDataComponent },
     ])
   ],
   providers: [MemberService, DatePipe, EmployeeService],
