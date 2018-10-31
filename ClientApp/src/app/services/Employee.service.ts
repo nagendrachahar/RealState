@@ -29,6 +29,12 @@ export class EmployeeService {
     );
   }
 
+  FillDataSaurce(UserId: number) {
+    return this._http.get<any>(this.myAppUrl + 'api/Masters/FillDataSaurce/' + UserId).pipe(
+      catchError(this.handleError)
+    );
+  }
+
   //-----------              MEMBER               -------------
   FillDocumentType() {
     return this._http.get<any>(this.myAppUrl + 'api/Masters/FillDocumentType').pipe(

@@ -156,8 +156,46 @@ namespace Realstate.Controllers
             return JSONresult;
         }
 
-        //-----------                           STATE      -------------
-        [HttpGet("[action]")]
+
+    [HttpGet("[action]/{UserId}")]
+    public string FillDataSaurce(int UserId)
+    {
+      DataTable dt = new DataTable();
+      string JSONresult;
+      string Query;
+      try
+      {
+        using (SqlConnection con = new SqlConnection(Db.Database.GetDbConnection().ConnectionString))
+        {
+          Query = @"exec sp_get.DataAccessRightSource " + UserId;
+
+          SqlCommand cmd = new SqlCommand(Query, con);
+          SqlDataAdapter da = new SqlDataAdapter();
+          cmd.CommandType = CommandType.Text;
+          con.Open();
+          da.SelectCommand = cmd;
+          da.Fill(dt);
+          JSONresult = JsonConvert.SerializeObject(dt, Formatting.Indented);
+          con.Close();
+        }
+
+      }
+      catch (Exception Ex)
+      {
+        dt.Columns.Add(new DataColumn("MessageType"));
+        dt.Columns.Add(new DataColumn("Message"));
+        DataRow dr = dt.NewRow();
+        dr[0] = "0";
+        dr[1] = Ex.Message.ToString();
+
+        dt.Rows.Add(dr);
+        JSONresult = JsonConvert.SerializeObject(dt, Formatting.Indented);
+      }
+      return JSONresult;
+    }
+
+    //-----------                           STATE      -------------
+    [HttpGet("[action]")]
         public IList FillState()
         {
             var Result= (from S in Db.States
@@ -3980,7 +4018,49 @@ namespace Realstate.Controllers
             return JSONresult;
         }
 
-        [HttpGet("[action]/{MenuId}/{UserId}")]
+
+    [HttpGet("[action]/{TableId}/{ColumnId}/{UserId}")]
+    public string Save_SaveAccessData(int TableId, int ColumnId, int UserId)
+    {
+      DataTable dt = new DataTable();
+      string JSONresult;
+      try
+      {
+        using (SqlConnection con = new SqlConnection(Db.Database.GetDbConnection().ConnectionString))
+        {
+          SqlCommand cmd = new SqlCommand("sp_Save.SaveAccessData", con);
+          SqlDataAdapter da = new SqlDataAdapter();
+          cmd.CommandType = CommandType.StoredProcedure;
+
+          cmd.Parameters.AddWithValue("@TableId", TableId);
+          cmd.Parameters.AddWithValue("@ColumnId", ColumnId);
+          cmd.Parameters.AddWithValue("@UserId", UserId);
+
+          con.Open();
+          cmd.CommandType = CommandType.StoredProcedure;
+          da.SelectCommand = cmd;
+          da.Fill(dt);
+          JSONresult = JsonConvert.SerializeObject(dt, Formatting.Indented);
+          con.Close();
+        }
+
+      }
+      catch (Exception Ex)
+      {
+        dt.Columns.Add(new DataColumn("MessageType"));
+        dt.Columns.Add(new DataColumn("Message"));
+        DataRow dr = dt.NewRow();
+        dr[0] = "0";
+        dr[1] = Ex.Message.ToString();
+
+        dt.Rows.Add(dr);
+        JSONresult = JsonConvert.SerializeObject(dt, Formatting.Indented);
+      }
+      return JSONresult;
+    }
+
+
+    [HttpGet("[action]/{MenuId}/{UserId}")]
         public string Save_UpdatePermission(int MenuId, int UserId)
         {
             DataTable dt = new DataTable();

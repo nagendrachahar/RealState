@@ -632,6 +632,14 @@ export class MemberService {
 
   }
 
+  Save_SaveAccessdata(TableId: number, ColumnId: number, UserId: number) {
+
+    return this._http.get<any>(this.myAppUrl + 'api/Masters/Save_SaveAccessData/' + TableId + '/' + ColumnId + '/' + UserId).pipe(
+      catchError(this.handleError)
+    );
+
+  }
+
   Save_UpdatePermission(MenuId: number, UserId: number) {
 
     return this._http.get<any>(this.myAppUrl + 'api/Masters/Save_UpdatePermission/' + MenuId + '/' + UserId).pipe(

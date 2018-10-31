@@ -32,39 +32,19 @@
           <div id="tab-en">
             <div class="col-md-12 col-sm-12 col-xs-12">
 
-                <ul id="myULl">
-                  <li *ngFor="let m of getParent()">
-                    <span class="carett">{{m.MenuName}}</span>
-                    <ul *ngIf="checkChild(MenuList, m.MenuId)" class="nestedd">
-                      <li *ngFor="let c of getChild(m.MenuId)">
-                        <span class="carett">{{c.MenuName}}</span>
-                        <ul *ngIf="checkChild(MenuList, c.MenuId)" class="nestedd">
-                          <li *ngFor="let c2 of getChild(c.MenuId)">
-                            {{c2.MenuName}}
-                            <div class="treeviewflags" >
-                              <label>Save <input type="checkbox" (change)="SaveFlag(c2.MenuId)" [checked]="1==c2.Save" /></label>
-                              <label>Update <input type="checkbox" (change)="UpdateFlag(c2.MenuId)" [checked]="1==c2.Update" /></label>
-                              <label>Delete <input type="checkbox" (change)="DeleteFlag(c2.MenuId)" [checked]="1==c2.Delete" /></label>
-                              <label>View <input type="checkbox" (change)="ViewFlag(c2.MenuId)" [checked]="1==c2.View" /></label>
-                            </div>
-                          </li>
-                        </ul>
-                        <div class="treeviewflags" *ngIf="!checkChild(MenuList, c.MenuId)" >
-                          <label>Save <input type="checkbox" (change)="SaveFlag(c.MenuId)" [checked]="1==c.Save" /></label>
-                          <label>Update <input type="checkbox" (change)="UpdateFlag(c.MenuId)" [checked]="1==c.Update" /></label>
-                          <label>Delete <input type="checkbox" (change)="DeleteFlag(c.MenuId)" [checked]="1==c.Delete" /></label>
-                          <label>View <input type="checkbox" (change)="ViewFlag(c.MenuId)" [checked]="1==c.View" /></label>
-                        </div>
-                      </li>
-                    </ul>
-                    <div class="treeviewflags" *ngIf="!checkChild(MenuList, m.MenuId)" >
-                      <label>Save <input type="checkbox" (change)="SaveFlag(m.MenuId)" [checked]="1==m.Save" /></label>
-                      <label>Update <input type="checkbox" (change)="UpdateFlag(m.MenuId)" [checked]="1==m.Update" /></label>
-                      <label>Delete <input type="checkbox" (change)="DeleteFlag(m.MenuId)" [checked]="1==m.Delete" /></label>
-                      <label>View <input type="checkbox" (change)="ViewFlag(m.MenuId)" [checked]="1==m.View" /></label>
-                    </div>
-                  </li>
-                </ul>
+              <p (click)="checkAll()">click</p>
+
+              <ul id="myULl" class="myULl">
+                <li *ngFor="let m of getParent()">
+                  <span class="carett">{{m.DisplayName}}</span>
+                  <ul *ngIf="checkChild(MenuList, m.DisplayName)" class="nestedd">
+                    <li *ngFor="let c of getChild(m.DisplayName)">
+                      <span ><label><input class="check" type="checkbox" (change)="SaveFlag(c.TableId, c.ColumnId)" [checked]="1==c.Status" /> {{c.RightName}}</label></span>
+                    </li>
+                  </ul>
+                
+                </li>
+              </ul>
 
             </div>
 

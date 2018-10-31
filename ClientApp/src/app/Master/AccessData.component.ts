@@ -30,9 +30,6 @@ export class AccessDataComponent {
       UserId: [0],
 
     });
-
-
-  
     
     this.Message = "Please Wait...";
     this.FillTable();
@@ -50,10 +47,10 @@ export class AccessDataComponent {
 
   }
 
-  SaveFlag(MenuId: number) {
+  SaveFlag(TableId: number, ColumnId: number) {
     var UserId = this.UserPermission.controls['UserId'].value;
     if (UserId > 0) {
-      this._memberService.Save_SavePermission(MenuId, UserId).subscribe((data) => {
+      this._memberService.Save_SaveAccessdata(TableId, ColumnId, UserId).subscribe((data) => {
         console.log(data);
         this.Message = data[0].Message;
         if (data[0].MessageType == 1) {
@@ -74,85 +71,14 @@ export class AccessDataComponent {
     });
   }
 
-  UpdateFlag(MenuId: number) {
-    var UserId = this.UserPermission.controls['UserId'].value;
-    if (UserId > 0) {
-      this._memberService.Save_UpdatePermission(MenuId, UserId).subscribe((data) => {
-        console.log(data);
-        this.Message = data[0].Message;
-        if (data[0].MessageType == 1) {
-          this.MessageType = 'success';
-        }
-        else {
-          this.MessageType = 'warning';
-        }
-      }, error => this.errorMessage = error);
-    }
-    else {
-      this.Message = 'Please Select User First';
-      this.MessageType = 'warning';
-    }
-
-    $(document).ready(function () {
-      $(".message").show();
-    });
-  }
-
-  DeleteFlag(MenuId: number) {
-    var UserId = this.UserPermission.controls['UserId'].value;
-    if (UserId > 0) {
-      this._memberService.Save_DeletePermission(MenuId, UserId).subscribe((data) => {
-        console.log(data);
-        this.Message = data[0].Message;
-        if (data[0].MessageType == 1) {
-          this.MessageType = 'success';
-        }
-        else {
-          this.MessageType = 'warning';
-        }
-      }, error => this.errorMessage = error);
-    }
-    else {
-      this.Message = 'Please Select User First';
-      this.MessageType = 'warning';
-    }
-
-    $(document).ready(function () {
-      $(".message").show();
-    });
-  }
-
-  ViewFlag(MenuId: number) {
-    var UserId = this.UserPermission.controls['UserId'].value;
-    if (UserId > 0) {
-      this._memberService.Save_ViewPermission(MenuId, UserId).subscribe((data) => {
-        console.log(data);
-        this.Message = data[0].Message;
-        if (data[0].MessageType == 1) {
-          this.MessageType = 'success';
-        }
-        else {
-          this.MessageType = 'warning';
-        }
-      }, error => this.errorMessage = error);
-    }
-    else {
-      this.Message = 'Please Select User First';
-      this.MessageType = 'warning';
-    }
-
-    $(document).ready(function () {
-      $(".message").show();
-    });
-  }
-
+  
 
   UserChange(UserIdd: number) {
     console.log(UserIdd);
     this.FillTable();
   }
 
-  checkChild(data, id) {
+  checkChild(data, Name) {
 
     var isChild = false;
 
@@ -160,20 +86,19 @@ export class AccessDataComponent {
 
       for (var i = 0; i < data.length; i++) {
 
-        if (data[i].ParentID == id) {
+        if (data[i].DisplayName == Name) {
 
           isChild = true;
         }
       }
     }
-
     return isChild;
 
   }
 
   public FillTable() {
 
-    this._employeeService.FillMenuTable(this.UserPermission.controls['UserId'].value).subscribe((data) => {
+    this._employeeService.FillDataSaurce(this.UserPermission.controls['UserId'].value).subscribe((data) => {
         this.MenuList = data;
 
       console.log(data);
@@ -184,6 +109,7 @@ export class AccessDataComponent {
         //  this.pa
         //  $("p").toggle();
         //});
+
         var toggler = document.getElementsByClassName("carett");
         var i;
 
@@ -205,12 +131,26 @@ export class AccessDataComponent {
       
   }
 
+  checkAll() {
+
+    var checkbox = document.getElementsByClassName("check");
+    var i;
+
+    for (i = 0; i < checkbox.length; i++) {
+
+      checkbox[i].setAttribute('checked', 'checked');
+      console.log("hello");
+
+      }
+    }
+  
+
   getParent() {
-    return this.MenuList.filter((item) => item.ParentID === 0);
+    return this.MenuList.filter((item) => item.ColumnId === 1);
   }
 
-  getChild(menuId: number) {
-    return this.MenuList.filter((item) => item.ParentID === menuId);
+  getChild(Name: number) {
+    return this.MenuList.filter((item) => item.DisplayName === Name);
   }
 
 
